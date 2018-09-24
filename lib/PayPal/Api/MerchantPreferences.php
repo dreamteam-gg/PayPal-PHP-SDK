@@ -122,14 +122,21 @@ class MerchantPreferences extends PayPalModel
     /**
      * Notify URL on agreement creation. 1000 characters max.
      *
+     * @see https://github.com/paypal/PayPal-PHP-SDK/issues/1157
+     * @see https://github.com/paypal/PayPal-PHP-SDK/pull/1152
+     *
      * @param string $notify_url
-     * @throws \InvalidArgumentException
+     *
      * @return $this
      */
     public function setNotifyUrl($notify_url)
     {
-        UrlValidator::validate($notify_url, "NotifyUrl");
+        if (null !== $notify_url) {
+            UrlValidator::validate($notify_url, "NotifyUrl");
+        }
+
         $this->notify_url = $notify_url;
+
         return $this;
     }
 

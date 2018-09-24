@@ -89,16 +89,6 @@ class MerchantPreferencesTest extends TestCase
         $obj = new MerchantPreferences();
         $obj->setReturnUrl(null);
     }
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage NotifyUrl is not a fully qualified URL
-     */
-    public function testUrlValidationForNotifyUrl()
-    {
-        $obj = new MerchantPreferences();
-        $obj->setNotifyUrl(null);
-    }
-
     public function testUrlValidationForCancelUrlDeprecated()
     {
         $obj = new MerchantPreferences();
