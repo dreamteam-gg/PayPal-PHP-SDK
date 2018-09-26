@@ -74,14 +74,20 @@ class MerchantPreferences extends PayPalModel
     /**
      * Redirect URL on cancellation of agreement request. 1000 characters max.
      *
+     * @see https://github.com/paypal/PayPal-PHP-SDK/pull/1152
+     *
      * @param string $cancel_url
      * @throws \InvalidArgumentException
      * @return $this
      */
     public function setCancelUrl($cancel_url)
     {
-        UrlValidator::validate($cancel_url, "CancelUrl");
+        if (null !== $cancel_url) {
+            UrlValidator::validate($cancel_url, "CancelUrl");
+        }
+
         $this->cancel_url = $cancel_url;
+
         return $this;
     }
 
@@ -98,14 +104,20 @@ class MerchantPreferences extends PayPalModel
     /**
      * Redirect URL on creation of agreement request. 1000 characters max.
      *
+     * @see https://github.com/paypal/PayPal-PHP-SDK/pull/1152
+     *
      * @param string $return_url
      * @throws \InvalidArgumentException
      * @return $this
      */
     public function setReturnUrl($return_url)
     {
-        UrlValidator::validate($return_url, "ReturnUrl");
+        if (null !== $return_url) {
+            UrlValidator::validate($return_url, "ReturnUrl");
+        }
+
         $this->return_url = $return_url;
+
         return $this;
     }
 
